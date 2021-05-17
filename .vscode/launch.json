@@ -2,11 +2,19 @@
   "version": "2.0.0",
   "configurations": [
     {
+      "name": "Launch Edge",
+      "request": "launch",
+      "type": "pwa-msedge",
+      "url": "http://localhost:9229",
+      "webRoot": "${workspaceFolder}"
+    },
+
+    {
       "name": "Attach to node",
       "type": "node",
       "request": "attach",
       "restart": true,
-      "port": 8080
+      "port": 
     }
   ]
 }
