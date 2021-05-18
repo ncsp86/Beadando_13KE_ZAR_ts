@@ -1,6 +1,6 @@
 ﻿import * as http from "http";
-import * as url from "URL"; // űrlapokhoz, input kiolvasás
-import * as fs from "fs"; // file-kezelés
+import * as url from "URL"; 
+import * as fs from "fs"; 
 import { Kód } from "./Kod";
 import { TsLinqHandler } from "./TsLinq";
 
@@ -18,7 +18,7 @@ export class Content {
       .split("\n")
       .forEach((x) => k.push(new Kód(x.trim())));
 
-    document.write(<br />"2. feladat: Kérem a zár kódszámát: ");
+    document.write(<br/>"2. feladat: Kérem a zár kódszámát: ");
     const zárKód: string | undefined = url.parse(req.url, true).query[zarkod];
     if (zárKód === undefined) {
       document.write(<form method='GET'><input type='text' name='zarkod'/></form>);
@@ -28,7 +28,7 @@ export class Content {
     res.write(zárKód);
 
     res.write(
-      <br />3. feladat: A nyitó kódszámok sorai:
+      <br/>3. feladat: A nyitó kódszámok sorai:
         new TsLinqHandler(k)
           .Where((x) => x.K === zárKód)
           .Select((x) => x.Ssz)
@@ -41,14 +41,14 @@ export class Content {
     res.write(
       ism.Count() === 0
         ? var: "4. feladat: nem volt ismétlődő számjegy"
-        : <br />"4. feladat: Az első ismétlődést tartalmazó próbálkozás sorszáma: "
+        : <br/>"4. feladat: Az első ismétlődést tartalmazó próbálkozás sorszáma: "
             ism.First().Ssz
     );
 
     res.write(
-      <br />5. feladat: Egy 
+      <br/>5. feladat: Egy 
         zárKód.length.toString() +
-        var: " hosszú kódszám: " +
+        var: "hosszú kódszám: " +
         Kód.Generál(zárKód.length)
     );
     fs.writeFileSync(
